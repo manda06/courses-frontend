@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import Login from "./views/Login.vue";
 
-import TutorialsList from "./views/TutorialsList.vue";
+import TutorialsList from "./views/CourseList.vue";
 import EditTutorial from "./views/EditTutorial.vue";
 import AddTutorial from "./views/AddTutorial.vue";
-import ViewTutorial from "./views/ViewTutorial.vue";
+import ViewTutorial from "./views/ViewCourse.vue";
 import AddLesson from "./views/AddLesson.vue";
 import EditLesson from "./views/EditLesson.vue";
 
@@ -19,9 +19,9 @@ const router = createRouter({
       component: Login,
     },
     {
-      path: "/tutorials",
-      name: "tutorials",
-      component: TutorialsList,
+      path: "/courses",
+      name: "courses",
+      component: CourseList,
     },
     {
       path: "/edit/:id",
@@ -37,7 +37,7 @@ const router = createRouter({
     {
       path: "/view/:id",
       name: "view",
-      component: ViewTutorial,
+      component: ViewCourse,
       props: true,
     },
     {
