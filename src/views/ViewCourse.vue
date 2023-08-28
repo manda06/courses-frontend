@@ -32,7 +32,7 @@ const props = defineProps({
     });
 };*/
 
-const editTutorial = () => {
+const editCourse = () => {
   router.push({ name: "edit", params: { id: props.id } });
 };
 
@@ -71,8 +71,8 @@ const deleteLesson = (lesson) => {
       <br />
       <v-card>
         <v-card-title>
-          {{ tutorial.title }}
-          <v-btn class="mx-2" color="primary" @click="editTutorial">Edit</v-btn>
+          {{ course.title }}
+          <v-btn class="mx-2" color="primary" @click="editCourse">Edit</v-btn>
           
         </v-card-title>
         <v-card-text>
