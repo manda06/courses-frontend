@@ -1,5 +1,5 @@
 <script setup>
-import TutorialServices from "../services/tutorialServices";
+import TutorialServices from "../services/courseServices";
 import Utils from "../config/utils.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -63,7 +63,7 @@ retrieveTutorials();
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in tutorials" :key="item.title">
+          <!--  <tr v-for="(item, index) in tutorials" :key="item.title"> -->
               <td>{{ item.title }}</td>
               <td>{{ item.description }}</td>
               <td>
@@ -77,7 +77,7 @@ retrieveTutorials();
                   mdi-trash-can
                 </v-icon>
               </td>
-            </tr>
+           <!-- </tr> -->
           </tbody>
         </v-table>
       </v-card>
