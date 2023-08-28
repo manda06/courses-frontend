@@ -1,6 +1,6 @@
 <script setup>
-import TutorialServices from "../services/courseServices";
-import LessonServices from "../services/lessonServices";
+import CourseServices from "../services/courseServices";
+//import LessonServices from "../services/lessonServices";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
@@ -15,8 +15,8 @@ const props = defineProps({
   },
 });
 
-const retrieveLessons = () => {
-  TutorialServices.get(props.id)
+/*const retrieveLessons = () => {
+  CourseServices.get(props.id)
     .then((response) => {
       tutorial.value = response.data;
       LessonServices.getAllLessons(props.id)
@@ -30,13 +30,13 @@ const retrieveLessons = () => {
     .catch((e) => {
       message.value = e.response.data.message;
     });
-};
+};*/
 
-const editTutorial = () => {
+const editCourse = () => {
   router.push({ name: "edit", params: { id: props.id } });
 };
 
-const editLesson = (lesson) => {
+/*const editLesson = (lesson) => {
   router.push({
     name: "editLesson",
     params: { tutorialId: props.id, lessonId: lesson.id },
@@ -55,11 +55,11 @@ const deleteLesson = (lesson) => {
     .catch((e) => {
       message.value = e.response.data.message;
     });
-};
+};*/
 
-onMounted(() => {
+/*onMounted(() => {
   retrieveLessons();
-});
+});*/
 </script>
 
 <template>
@@ -71,11 +71,9 @@ onMounted(() => {
       <br />
       <v-card>
         <v-card-title>
-          {{ tutorial.title }}
-          <v-btn class="mx-2" color="primary" @click="editTutorial">Edit</v-btn>
-          <v-btn class="mx-2" color="success" @click="addLesson"
-            >Add Lesson</v-btn
-          >
+          {{ course.title }}
+          <v-btn class="mx-2" color="primary" @click="editCourse">Edit</v-btn>
+          
         </v-card-title>
         <v-card-text>
           <b>{{ message }}</b>
@@ -88,20 +86,7 @@ onMounted(() => {
               <th class="text-left">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="item in lessons" :key="item.title">
-              <td>{{ item.title }}</td>
-              <td>{{ item.description }}</td>
-              <td>
-                <v-icon small class="mx-4" @click="editLesson(item)">
-                  mdi-pencil
-                </v-icon>
-                <v-icon small class="mx-4" @click="deleteLesson(item)">
-                  mdi-trash-can
-                </v-icon>
-              </td>
-            </tr>
-          </tbody>
+          
         </v-table>
       </v-card>
     </v-container>
