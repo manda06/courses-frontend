@@ -20,13 +20,14 @@ const apiClient = axios.create({
     crossDomain: true,
   },
   transformRequest: (data, headers) => {
-    let user = Utils.getStore("user");
+    /*let user = Utils.getStore("user");
     if (user != null) {
       let token = user.token;
-      let authHeader = "";
-      if (token != null && token != "") authHeader = "Bearer " + token;
-      headers["Authorization"] = authHeader;
-    }
+      */
+    let authHeader = "";
+      /*if (token != null && token != "")*/ 
+    authHeader = "Bearer " + token;
+    headers["Authorization"] = authHeader;
     return JSON.stringify(data);
   },
   transformResponse: function (data) {
@@ -34,7 +35,7 @@ const apiClient = axios.create({
     // if (!data.success && data.code == "expired-session") {
     //   localStorage.deleteItem("user");
     // }
-    if (data.message !== undefined && data.message.includes("Unauthorized")) {
+    /*if (data.message !== undefined && data.message.includes("Unauthorized")) {
       AuthServices.logoutUser(Utils.getStore("user"))
         .then((response) => {
           console.log(response);
@@ -45,7 +46,7 @@ const apiClient = axios.create({
           console.log("error", error);
         });
       // Utils.removeItem("user")
-    }
+    }*/
     // console.log(Utils.getStore("user"))
     return data;
   },
