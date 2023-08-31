@@ -21,9 +21,9 @@
     },
     created() {
       
-      TodoService.getList(this.id) 
+      courseServices.getList(this.id) 
         .then(response => {
-          this.todo = response.data.list
+          this.course = response.data.list
         })
         .catch(error => {
           console.log('There was an error:', error.response)
@@ -32,7 +32,7 @@
   
     methods: {
       deleteTodo() {
-       TodoService.deleteList(this.id)
+       courseServices.deleteList(this.id)
           
           .then(response => {
             this.errors = response.data
