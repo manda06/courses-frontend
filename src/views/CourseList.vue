@@ -28,7 +28,7 @@ const deleteCourse= (course) => {
 };
 
 const retrieveCourse = () => {
-  CourseServices.getAllForUser(user.userId)
+  CourseServices.getAll()
     .then((response) => {
       courses.value = response.data;
     })
@@ -45,7 +45,7 @@ retrieveCourse();
     <v-container>
       <v-toolbar>
         <v-toolbar-title
-          >Hello, {{ user.fName }} {{ user.lName }}!</v-toolbar-title
+          >Hello!</v-toolbar-title
         >
       </v-toolbar>
       <br /><br />
