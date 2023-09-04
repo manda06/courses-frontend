@@ -1,13 +1,13 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import TutorialServices from "../services/courseServices";
+import CourseServices from "../services/courseServices";
 import Utils from "../config/utils.js";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const valid = ref(false);
 const user = Utils.getStore("user");
-const tutorial = ref({
+const course = ref({
   id: null,
   title: "",
   description: "",
@@ -15,18 +15,18 @@ const tutorial = ref({
 });
 const message = ref("Enter data and click save");
 
-const saveTutorial = () => {
+const saveCourse = () => {
   const data = {
-    title: tutorial.value.title,
-    description: tutorial.value.description,
+    title: course.value.title,
+    description: course.value.description,
     published: true,
-    userId: user.userId,
+    //userId: user.userId,
   };
-  TutorialServices.create(data)
+  CourseServices.create(data)
     .then((response) => {
-      tutorial.value.id = response.data.id;
+      course.value.id = response.data.id;
       console.log("add " + response.data);
-      router.push({ name: "tutorials" });
+      router.push({ name: "courses" });
     })
     .catch((e) => {
       message.value = e.response.data.message;
@@ -34,7 +34,7 @@ const saveTutorial = () => {
 };
 
 const cancel = () => {
-  router.push({ name: "tutorials" });
+  router.push({ name: "courses" });
 };
 
 onMounted(() => {
@@ -46,7 +46,7 @@ onMounted(() => {
   <div>
     <v-container>
       <v-toolbar>
-        <v-toolbar-title>Tutorial Add</v-toolbar-title>
+        <v-toolbar-title>Course Add</v-toolbar-title>
       </v-toolbar>
 
       <br />
@@ -54,14 +54,14 @@ onMounted(() => {
       <br />
       <v-form ref="form" v-model="valid" lazy validation>
         <v-text-field
-          v-model="tutorial.title"
+          v-model="course.title"
           id="title"
           :counter="50"
           label="Title"
           required
         ></v-text-field>
         <v-text-field
-          v-model="tutorial.description"
+          v-model="course.description"
           id="description"
           :counter="50"
           label="Description"
@@ -72,7 +72,7 @@ onMounted(() => {
           :disabled="!valid"
           color="success"
           class="mr-4"
-          @click="saveTutorial"
+          @click="saveCourse"
         >
           Save
         </v-btn>
