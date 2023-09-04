@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Login from "./views/Login.vue";
-
 import CourseList from "./views/CourseList.vue";
-import EditTutorial from "./views/EditTutorial.vue";
+import EditCourse from "./views/EditCourse.vue";
 import AddTutorial from "./views/AddTutorial.vue";
 import ViewCourse from "./views/ViewCourse.vue";
 
@@ -12,19 +10,14 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      alias: "/login",
-      name: "login",
-      component: Login,
-    },
-    {
-      path: "/courses",
+      alias: "/courses",
       name: "courses",
       component: CourseList,
     },
     {
       path: "/edit/:id",
       name: "edit",
-      component: EditTutorial,
+      component: EditCourse,
       props: true,
     },
     {

@@ -7,16 +7,14 @@ dns.setDefaultResultOrder("verbatim");
 
 export default () => {
   const baseURL =
-    process.env.APP_ENV === "development" ? "/" : "/courses-frontend";
-
-    process.env.APP_ENV === "development" ? "/" : "/courses-frontend/";
+    process.env.APP_ENV === "development" ? "/" : "/2023/project2/t5/";
 
   return defineConfig({
     plugins: [vue(), vuetify({ autoImport: true })],
 
     server: {
       host: "localhost",
-      port: 3005,
+      port: 8081,
     },
 
     base: baseURL,
