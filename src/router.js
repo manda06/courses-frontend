@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import CourseList from "./views/CourseList.vue";
 import EditCourse from "./views/EditCourse.vue";
-import AddTutorial from "./views/AddTutorial.vue";
+import AddTutorial from "./views/AddCourse.vue";
 import ViewCourse from "./views/ViewCourse.vue";
 
 const router = createRouter({
