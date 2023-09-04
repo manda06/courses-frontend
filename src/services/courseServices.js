@@ -4,9 +4,6 @@ export default {
   getAll() {
     return apiClient.get("/");
   },
-  getAllForUser(userId) {
-    return apiClient.get("/courses/userTut/" + userId);
-  },
   get(id) {
     return apiClient.get(`/courses/${id}`);
   },
