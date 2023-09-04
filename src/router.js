@@ -23,7 +23,7 @@ const router = createRouter({
     {
       path: "/add",
       name: "add",
-      component: AddTutorial,
+      component: AddCourse,
     },
     {
       path: "/view/:id",
