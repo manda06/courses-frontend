@@ -1,12 +1,10 @@
 <script setup>
 import CourseServices from "../services/courseServices";
-import Utils from "../config/utils.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const courses = ref([]);
-const user = Utils.getStore("user");
 const message = ref("Search, Edit or Delete Courses");
 
 const editCourse = (course) => {
@@ -44,8 +42,7 @@ retrieveCourse();
   <div>
     <v-container>
       <v-toolbar>
-        <v-toolbar-title
-          >Hello!</v-toolbar-title
+        <v-toolbar-title>Hello user!</v-toolbar-title
         >
       </v-toolbar>
       <br /><br />
