@@ -6,7 +6,6 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const valid = ref(false);
-const user = Utils.getStore("user");
 const course = ref({
   id: null,
   title: "",
@@ -37,9 +36,9 @@ const cancel = () => {
   router.push({ name: "courses" });
 };
 
-onMounted(() => {
+/*onMounted(() => {
   user.value = Utils.getStore("user");
-});
+});*/
 </script>
 
 <template>

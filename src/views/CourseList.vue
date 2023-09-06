@@ -60,7 +60,7 @@ retrieveCourse();
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in courses" :key="item.title">
+            <tr v-for="(item) in courses" :key="item.title">
               <td>{{ item.title }}</td>
               <td>{{ item.description }}</td>
               <td>
