@@ -63,8 +63,9 @@ retrieveCourse();
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item) in courses" :key="item.title">
-              <td>{{ item.title }}</td>
+
+            <tr v-for="(item) in courses" :key="item.name">
+              <td>{{ item.name }}</td>
               <td>{{ item.description }}</td>
               <td>
                 <v-icon small class="mx-4" @click="editCourse(item)">
