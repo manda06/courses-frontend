@@ -14,6 +14,9 @@ const editCourse = (course) => {
 const viewCourse = (course) => {
   router.push({ name: "view", params: { id: course.id } });
 };
+const addCourse = () => {
+  router.push({name: "add"});
+}
 
 const deleteCourse= (course) => {
   CourseServices.delete(course.id)
@@ -54,14 +57,15 @@ retrieveCourse();
         <v-table>
           <thead>
             <tr>
-              <th class="text-left">Title</th>
-              <th class="text-left">Description</th>
+              <th class="text-left">Name</th>
+              <th class="text-left">Number</th>
               <th class="text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in courses" :key="item.title">
-              <td>{{ item.title }}</td>
+
+            <tr v-for="(item) in courses" :key="item.name">
+              <td>{{ item.name }}</td>
               <td>{{ item.description }}</td>
               <td>
                 <v-icon small class="mx-4" @click="editCourse(item)">
@@ -78,6 +82,7 @@ retrieveCourse();
           </tbody>
         </v-table>
       </v-card>
+      <v-btn block @click="addCourse()">Add Course</v-btn>
     </v-container>
   </div>
 </template>
