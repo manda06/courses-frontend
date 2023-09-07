@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import CourseServices from "../services/courseServices";
 import { useRouter } from "vue-router";
+import courseServices from "../services/courseServices";
 
 const router = useRouter();
 const valid = ref(false);
@@ -13,16 +14,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const retrieveCourse = async () => {
-  try {
-    const response = await CourseServices.get(props.id);
-    Course.value = response.data;
-  } catch (e) {
-    message.value = e.response.data.message;
-  }
-};
-
 const updateCourse = async () => {
   const data = {
     title: Course.value.title,
@@ -44,6 +35,16 @@ const cancel = () => {
 onMounted(() => {
   retrieveCourse();
 });
+const retrieveCourse = () => {
+  CourseServices.getAll()
+  .then((response) => {
+    courses.value = response.data;
+  })
+  .catch((e) => {
+    message.value = e.response.data.message;
+  });
+};
+retrieveCourse();
 </script>
 
 <template>

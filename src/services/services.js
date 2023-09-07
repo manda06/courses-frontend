@@ -5,13 +5,13 @@ import Router from "../router.js";
 
 var baseurl = "";
 if (import.meta.env.DEV) {
-  baseurl = "http://localhost/courses/";
+  baseurl = "http://localhost:3015/course-t5";
 } else {
-  baseurl = "/courses/";
+  baseurl = "/course-t5";
 }
 
 const apiClient = axios.create({
-  baseURL: baseurl,
+  baseURL: baseurl, 
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const apiClient = axios.create({
       */
     let authHeader = "";
       /*if (token != null && token != "")*/ 
-    authHeader = "Bearer " + token;
+    authHeader = "Bearer ";
     headers["Authorization"] = authHeader;
     return JSON.stringify(data);
   },
@@ -48,6 +48,7 @@ const apiClient = axios.create({
       // Utils.removeItem("user")
     }*/
     // console.log(Utils.getStore("user"))
+    
     return data;
   },
 });

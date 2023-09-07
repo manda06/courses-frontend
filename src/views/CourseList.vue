@@ -1,12 +1,10 @@
 <script setup>
 import CourseServices from "../services/courseServices";
-import Utils from "../config/utils.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const courses = ref([]);
-const user = Utils.getStore("user");
 const message = ref("Search, Edit or Delete Courses");
 
 const editCourse = (course) => {
@@ -16,6 +14,9 @@ const editCourse = (course) => {
 const viewCourse = (course) => {
   router.push({ name: "view", params: { id: course.id } });
 };
+const addCourse = () => {
+  router.push({name: "add"});
+}
 
 const deleteCourse= (course) => {
   CourseServices.delete(course.id)
@@ -44,8 +45,7 @@ retrieveCourse();
   <div>
     <v-container>
       <v-toolbar>
-        <v-toolbar-title
-          >Hello!</v-toolbar-title
+        <v-toolbar-title>Hello user!</v-toolbar-title
         >
       </v-toolbar>
       <br /><br />
@@ -57,14 +57,15 @@ retrieveCourse();
         <v-table>
           <thead>
             <tr>
-              <th class="text-left">Title</th>
-              <th class="text-left">Description</th>
+              <th class="text-left">Name</th>
+              <th class="text-left">Number</th>
               <th class="text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item) in courses" :key="item.title">
-              <td>{{ item.title }}</td>
+
+            <tr v-for="(item) in courses" :key="item.name">
+              <td>{{ item.name }}</td>
               <td>{{ item.description }}</td>
               <td>
                 <v-icon small class="mx-4" @click="editCourse(item)">
@@ -81,6 +82,7 @@ retrieveCourse();
           </tbody>
         </v-table>
       </v-card>
+      <v-btn block @click="addCourse()">Add Course</v-btn>
     </v-container>
   </div>
 </template>
