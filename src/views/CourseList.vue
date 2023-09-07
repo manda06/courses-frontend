@@ -14,6 +14,9 @@ const editCourse = (course) => {
 const viewCourse = (course) => {
   router.push({ name: "view", params: { id: course.id } });
 };
+const addCourse = () => {
+  router.push({name: "add"});
+}
 
 const deleteCourse= (course) => {
   CourseServices.delete(course.id)
@@ -54,8 +57,8 @@ retrieveCourse();
         <v-table>
           <thead>
             <tr>
-              <th class="text-left">Title</th>
-              <th class="text-left">Description</th>
+              <th class="text-left">Name</th>
+              <th class="text-left">Number</th>
               <th class="text-left">Actions</th>
             </tr>
           </thead>
@@ -78,6 +81,7 @@ retrieveCourse();
           </tbody>
         </v-table>
       </v-card>
+      <v-btn block @click="addCourse()">Add Course</v-btn>
     </v-container>
   </div>
 </template>
