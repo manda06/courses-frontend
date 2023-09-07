@@ -2,7 +2,7 @@
     <div>
       <H1>Delete Course</H1>
      <!--<h4>Delete {{ todo.name }}  ?</h4>--> 
-      <button v-on:click="deleteTodo()">Delete</button>
+      <button v-on:click="deleteCourse()">Delete</button>
       <button v-on:click="cancel()">Cancel</button>
     </div>
   </template>
@@ -15,7 +15,7 @@
   
     data() {
       return {
-        todo: Object,
+        course: Object,
         
       }
     },
@@ -31,7 +31,7 @@
     },
   
     methods: {
-      deleteTodo() {
+      deleteCourse() {
        courseServices.deleteList(this.id)
           
           .then(response => {
