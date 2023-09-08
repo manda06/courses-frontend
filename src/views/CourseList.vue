@@ -71,9 +71,6 @@ retrieveCourse();
                 <v-icon small class="mx-4" @click="editCourse(item)">
                   mdi-pencil
                 </v-icon>
-                <v-icon small class="mx-4" @click="viewCourse(item)">
-                  mdi-format-list-bulleted-type
-                </v-icon>
                 <v-icon small class="mx-4" @click="deleteCourse(item)">
                   mdi-trash-can
                 </v-icon>
