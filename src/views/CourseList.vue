@@ -45,7 +45,7 @@ retrieveCourse();
   <div>
     <v-container>
       <v-toolbar>
-        <v-toolbar-title>Hello user!</v-toolbar-title
+        <v-toolbar-title>Hello!</v-toolbar-title
         >
       </v-toolbar>
       <br /><br />
