@@ -22,7 +22,8 @@ const updateCourse = async () => {
   try {
     const response = await CourseServices.update(props.id, data);
     Course.value.id = response.data.id;
-    router.push({ name: "Courses" });
+    //router.push({ name: "Courses" });
+    router.push({ name: "edit", params: { id: course.id } });
   } catch (e) {
     message.value = e.response.data.message;
   }
@@ -35,8 +36,8 @@ const cancel = () => {
 onMounted(() => {
   retrieveCourse();
 });
-const retrieveCourse = () => {
-  CourseServices.getAll()
+const retrieveCourse = (course) => {
+  CourseServices.get(course.id)
   .then((response) => {
     courses.value = response.data;
   })
