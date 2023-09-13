@@ -2,7 +2,6 @@
 import { ref, onMounted } from "vue";
 import CourseServices from "../services/courseServices";
 import { useRouter } from "vue-router";
-import courseServices from "../services/courseServices";
 
 const router = useRouter();
 const valid = ref(false);
@@ -19,33 +18,35 @@ const updateCourse = async () => {
     title: Course.value.title,
     description: Course.value.description,
   };
-  try {
-    const response = await CourseServices.update(props.id, data);
-    Course.value.id = response.data.id;
-    //router.push({ name: "Courses" });
-    router.push({ name: "edit", params: { id: course.id } });
-  } catch (e) {
-    message.value = e.response.data.message;
-  }
-};
-
-const cancel = () => {
-  router.push({ name: "Courses" });
-};
-
-onMounted(() => {
-  retrieveCourse();
-});
-const retrieveCourse = (course) => {
-  CourseServices.get(course.id)
+  await CourseServices.update(props.id, data)
   .then((response) => {
-    courses.value = response.data;
+    response.data.title = Course.value.title,
+    response.data.description = Course.value.description
+    router.push({ name: "courses" });
+
   })
   .catch((e) => {
     message.value = e.response.data.message;
   });
 };
-retrieveCourse();
+
+const cancel = () => {
+  router.push({ name: "courses" });
+};
+
+async function retrieveCourse(){
+  await CourseServices.get(props.id)
+  .then((response) => {
+    Course.value = response.data;
+  })
+  .catch((e) => {
+    message.value = e.response.data.message;
+  });
+};
+
+onMounted(async () => {
+  await retrieveCourse();
+});
 </script>
 
 <template>
