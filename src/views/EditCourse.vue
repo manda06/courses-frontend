@@ -1,11 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import TutorialServices from "../services/tutorialServices";
+import CourseServices from "../services/courseServices";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const valid = ref(false);
-const tutorial = ref({});
+const Course = ref({});
 const message = ref("Enter data and click save");
 
 const props = defineProps({
@@ -13,36 +13,39 @@ const props = defineProps({
     required: true,
   },
 });
-
-const retrieveTutorial = async () => {
-  try {
-    const response = await TutorialServices.get(props.id);
-    tutorial.value = response.data;
-  } catch (e) {
-    message.value = e.response.data.message;
-  }
-};
-
-const updateTutorial = async () => {
+const updateCourse = async () => {
   const data = {
-    title: tutorial.value.title,
-    description: tutorial.value.description,
+    title: Course.value.title,
+    description: Course.value.description,
   };
-  try {
-    const response = await TutorialServices.update(props.id, data);
-    tutorial.value.id = response.data.id;
-    router.push({ name: "tutorials" });
-  } catch (e) {
+  await CourseServices.update(props.id, data)
+  .then((response) => {
+    response.data.title = Course.value.title,
+    response.data.description = Course.value.description
+    router.push({ name: "courses" });
+
+  })
+  .catch((e) => {
     message.value = e.response.data.message;
-  }
+  });
 };
 
 const cancel = () => {
-  router.push({ name: "tutorials" });
+  router.push({ name: "courses" });
 };
 
-onMounted(() => {
-  retrieveTutorial();
+async function retrieveCourse(){
+  await CourseServices.get(props.id)
+  .then((response) => {
+    Course.value = response.data;
+  })
+  .catch((e) => {
+    message.value = e.response.data.message;
+  });
+};
+
+onMounted(async () => {
+  await retrieveCourse();
 });
 </script>
 
@@ -50,21 +53,21 @@ onMounted(() => {
   <div>
     <v-container>
       <v-toolbar>
-        <v-toolbar-title>Tutorial Edit</v-toolbar-title>
+        <v-toolbar-title>Course Edit</v-toolbar-title>
       </v-toolbar>
       <br />
       <h4>{{ message }}</h4>
       <br />
       <v-form ref="form" v-model="valid" lazy validation>
         <v-text-field
-          v-model="tutorial.title"
+          v-model="Course.title"
           id="title"
           :counter="50"
           label="Title"
           required
         ></v-text-field>
         <v-text-field
-          v-model="tutorial.description"
+          v-model="Course.description"
           id="description"
           :counter="50"
           label="Description"
@@ -75,7 +78,7 @@ onMounted(() => {
           :disabled="!valid"
           color="success"
           class="mr-4"
-          @click="updateTutorial()"
+          @click="updateCourse()"
         >
           Save
         </v-btn>
